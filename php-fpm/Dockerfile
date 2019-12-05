@@ -224,6 +224,14 @@ RUN if [ ${INSTALL_INTL} = true ]; then \
 # Clear package lists
 RUN rm -rf /var/lib/apt/lists/*
 
+#SET config development by default
+##RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+#Copy scripts 
+WORKDIR /home/app
+COPY scripts/* ./
+RUN ./configure.sh
+
 # Permissions
 RUN chown -R root:www-data /var/www/html
 RUN chmod u+rwx,g+rx,o+rx /var/www/html

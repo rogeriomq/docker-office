@@ -1,4 +1,8 @@
 version: '3.2'
+networks:
+    office-network:
+        driver: bridge
+
 services:
     nginx:
         container_name: nginx
@@ -13,6 +17,7 @@ services:
         ports:
             - "${NGINX_HOST_HTTP_PORT}:80"
             - "${NGINX_HOST_HTTPS_PORT}:443"
+        #--links flag is a legacy feature of Docker. It may eventually be removed.
         links:
             - php-fpm
         networks:
@@ -48,7 +53,8 @@ services:
             - ${APPLICATION}:/var/www/html
         networks:
             - office-network
-
+        depends_on: 
+            - mariadb
     mariadb:
         container_name: mariadb
         restart: always
@@ -66,7 +72,3 @@ services:
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         networks:
             - office-network
-
-networks:
-    office-network:
-        driver: bridge
