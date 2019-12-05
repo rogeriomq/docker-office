@@ -1,5 +1,5 @@
-FROM nginx:1.13.3
+FROM nginx:1.16-alpine
 
-MAINTAINER Daniel Nogueira <danielnogueira.dev@gmail.com>
+LABEL mainteiner="Rogerio M. de Queiroz <rogerio.mq@gmail.com>"
 
 EXPOSE 80 443

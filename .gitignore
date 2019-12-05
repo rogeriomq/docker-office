@@ -4,21 +4,12 @@
 
 # ignora tudo no diretório "htdocs", exceto:
 htdocs/*
-!htdocs/api.dev
-htdocs/api.dev/*
-!htdocs/api.dev/public
-htdocs/api.dev/public/*
-!htdocs/50x.html
-!htdocs/index.html
-!htdocs/index.php
-!htdocs/bd.php
-!htdocs/api.dev/public/50x.html
-!htdocs/api.dev/public/index.html
-!htdocs/api.dev/public/index.php
-!htdocs/api.dev/public/bd.php
 
 # ignora tudo no diretório "mysql/data"
 mysql/data/
+
+# ignora tudo no diretório "mariadb/data"
+mariadb/data/
 
 # ignora tudo no diretório "nginx/logs"
 nginx/logs/

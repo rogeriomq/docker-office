@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 services:
     nginx:
         container_name: nginx
@@ -16,7 +16,7 @@ services:
         links:
             - php-fpm
         networks:
-            - code-network
+            - office-network
 
     php-fpm:
         container_name: php-fpm
@@ -47,13 +47,13 @@ services:
         volumes:
             - ${APPLICATION}:/var/www/html
         networks:
-            - code-network
+            - office-network
 
-    mysql:
-        container_name: mysql
+    mariadb:
+        container_name: mariadb
         restart: always
         build:
-            context: ./mysql
+            context: ./mariadb
             dockerfile: Dockerfile
         ports:
             - "${MYSQL_PORT}:3306"
@@ -65,8 +65,8 @@ services:
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
             - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         networks:
-            - code-network
+            - office-network
 
 networks:
-    code-network:
+    office-network:
         driver: bridge
